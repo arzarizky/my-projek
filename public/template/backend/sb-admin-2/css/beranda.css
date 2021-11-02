@@ -1,0 +1,44 @@
+
+h1{
+    font-size: 100px;
+    color: chocolate;
+}
+
+body{
+    background-image: url('../../../../images/backend/Background\ beranda.jpg');
+    background-size: cover;    
+}
+.navbar-nav .nav-link a{
+    font-size: 20px;
+    margin: 20px;
+    color: white;
+}
+.navbar{
+    margin-top: 20px;
+}
+.content {
+    color: white;
+    text-shadow: 4px 3px 7px gray;
+    margin-top: 150px;
+}
+.content h1{   
+    font-size: 64px;
+    color: white;
+}
+.content h4{   
+    font-size: 36px;
+}
+footer .row{
+    font-size: 20px;
+    color: white;
+    margin-top: 200px;
+}
+.nav-link:hover::after {
+    content: '';
+    display: block;
+    border-bottom: 1px solid white;
+    width: 100%;
+    margin: auto;
+    padding-bottom: 5px;
+    margin-bottom: -8px;
+}

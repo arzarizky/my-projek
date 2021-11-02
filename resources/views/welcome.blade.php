@@ -1,100 +1,118 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{{ asset('plugins/bootstrap-4/css/bootstrap.min.css') }}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="/">CHIKADMIN</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+      	@auth
+      		<a class="nav-link" href="{{ route('admin') }}">Dashboard</a>
+      	@else
+      		<a class="nav-link" href="{{ route('login') }}">Login</a>
+      	@endauth
+      </li>
+    </ul>
+    <span class="navbar-text">
 
-        <title>Laravel</title>
+    </span>
+  </div>
+</nav>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
+<div class="container-fluid mt-5">
+	
+	<div class="jumbotron">
+    @guest
+    <h1 class="display-4">Selamat Datang di CHIKADMIN</h1>
+    @endguest
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+    @auth
+    <h1 class="display-4">Hello , {{ Auth::user()->name }}</h1>
+    @endauth
+    
+    <p class="lead">Chikadmin adalah simpel starter sb-admin-2 untuk laravel, keuntungannya adalah kita tidak harus mengintegrasikan sb-admin-2 dari awal.</p>
+	  <hr class="my-4">
 
-            .full-height {
-                height: 100vh;
-            }
+    <div class="row">
+      
+      <div class="col-lg-6 mb-3">
+        <div class="card">
+          <div class="card-header">
+            Email & Password Login
+          </div>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
+          <div class="card-body">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Password</th>
+                  <th scope="col">Level</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>admin@gmail.com</td>
+                  <td>password</td>
+                  <td>admin</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>ayane@gmail.com</td>
+                  <td>password</td>
+                  <td>admin</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>kotone@gmail.com</td>
+                  <td>password</td>
+                  <td>user</td>
+                </tr>
+                <tr>
+                  <th scope="row">4</th>
+                  <td>mapple@gmail.com</td>
+                  <td>password</td>
+                  <td>user</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-    </body>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header">Beberapa Fitur Simpel</div>
+          <div class="card-body">
+            <ul>
+
+              <li>Autentikasi dengan Laravel Auth</li>
+              <li>Autorisasi dengan Laravel Gate</li>
+              <li>Yajra DataTable Serverside</li>
+              <li>Ajax crud dengan datatable serverside</li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<script type="text/javascript" src="{{ asset('plugins/bootstrap-4/js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('plugins/bootstrap-4/js/bootstrap.min.js') }}"></script>
+</body>
 </html>
